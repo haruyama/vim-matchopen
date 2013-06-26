@@ -42,6 +42,10 @@ function! s:Highlight_Last_Open()
       if m_lnum > 0 && m_lnum >= stopline
         let hl_pattern = hl_pattern . '\%' . m_lnum . 'l\%' . m_col . 'c\|'
       endif
+      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nW', s_skip)
+      if m_lnum > 0 && m_lnum >= stopline
+        let hl_pattern = hl_pattern . '\%' . m_lnum . 'l\%' . m_col . 'c\|'
+      endif
   endfor
 
   if !empty(hl_pattern)
