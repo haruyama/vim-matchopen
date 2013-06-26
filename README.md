@@ -29,6 +29,6 @@ in the current window, or very long lines. It can be turned it off with
 "The longer value you set, the larger range will be searched.
 "But you will feel that operations are heavier.
 "Note: The value must not be negative. 
-""     A zero value is like not giving the argument.
+"      A zero value is like not giving the argument.
 let g:matchopen_searchpairpos_timeout = 5
 ```
