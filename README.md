@@ -3,12 +3,16 @@
 A simple [Vim](http://www.vim.org/) plugin to highlight the last opened, 
 but unclosed delimiter. Based on Vim's own `matchparen.vim`.
 
+This version([haruyama/vim-matchopen](https://github.com/haruyama/vim-matchopen)) also highlights the first close delimiter in context.
+
+Original version: [arnar/vim-matchopen](https://github.com/arnar/vim-matchopen)
+
 Example:
 
     synIDattr(synID(line("."), col("."), 0), "name") 
-                   ^            ^
-                   |            if cursor is here
-                   this is highlighted
+                   ^  ^                   ^
+                   |  if cursor is here   |
+                   this is highlighted    this is highlighted
 
 Note: This is a preliminary version for testing. Only works for regular
 parenthesis and has no documentation.
