@@ -38,11 +38,11 @@ function! s:Highlight_Last_Open()
   let hl_pattern = ''
 
   for [p_open, p_close] in [['(',')'], ['{','}'], ['\[', '\]']]
-      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nbW', s_skip, stopline)
+      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nbW', s_skip, stopline, 500)
       if m_lnum > 0 && m_lnum >= stopline
         let hl_pattern = hl_pattern . '\%' . m_lnum . 'l\%' . m_col . 'c\|'
       endif
-      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nW', s_skip)
+      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nW', s_skip, 0, 500)
       if m_lnum > 0 && m_lnum >= stopline
         let hl_pattern = hl_pattern . '\%' . m_lnum . 'l\%' . m_col . 'c\|'
       endif
