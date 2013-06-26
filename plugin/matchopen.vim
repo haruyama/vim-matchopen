@@ -8,6 +8,9 @@ if exists("g:loaded_matchopen") || &cp || !exists("##CursorMoved")
 endif
 let g:loaded_matchopen = 1
 
+let g:matchopen_searchpairpos_timeout =
+      \ get(g:, 'matchopen_searchpairpos_timeout', 3)
+
 augroup matchlastopen
   autocmd! CursorMoved,CursorMovedI,WinEnter * call s:Highlight_Last_Open()
 augroup END
@@ -38,11 +41,11 @@ function! s:Highlight_Last_Open()
   let hl_pattern = ''
 
   for [p_open, p_close] in [['(',')'], ['{','}'], ['\[', '\]']]
-      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nbW', s_skip, stopline, 3)
+      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nbW', s_skip, stopline, g:matchopen_searchpairpos_timeout)
       if m_lnum > 0 && m_lnum >= stopline
         let hl_pattern = hl_pattern . '\%' . m_lnum . 'l\%' . m_col . 'c\|'
       endif
-      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nW', s_skip, 0, 3)
+      let [m_lnum, m_col] = searchpairpos(p_open, '', p_close, 'nW', s_skip, 0, g:matchopen_searchpairpos_timeout)
       if m_lnum > 0 && m_lnum >= stopline
         let hl_pattern = hl_pattern . '\%' . m_lnum . 'l\%' . m_col . 'c\|'
       endif

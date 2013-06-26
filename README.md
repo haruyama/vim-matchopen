@@ -21,3 +21,14 @@ Warning: Like `matchparen.vim`, this installs an autocommand run whenever
 the cursor is moved. It may be too slow if you have large folds collapsed
 in the current window, or very long lines. It can be turned it off with 
 `:NoMatchLastOpen`, and on again with `:DoMatchLastOpen`.
+
+## Setting examples
+
+```vim
+"Set searchpairpos() timeout(msec). Default value is 3.
+"The longer value you set, the larger range will be searched.
+"But you will feel that operations are heavier.
+"Note: The value must not be negative. 
+""     A zero value is like not giving the argument.
+let g:matchopen_searchpairpos_timeout = 5
+```
